@@ -1,4 +1,6 @@
-FROM arm32v7/debian:latest
+FROM resin/armv7hf-debina-qemu
+
+RUN [ "cross-build-start" ]
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y curl wget make gcc g++ gosu 
@@ -19,5 +21,7 @@ RUN gosu nobody true
 COPY entrypoint.sh /usr/sbin/
 
 RUN chmod 755 /usr/sbin/entrypoint.sh
+
+RUN [ "cross-build-end"]
 
 CMD ["/usr/sbin/entrypoint.sh"]
