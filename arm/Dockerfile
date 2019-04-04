@@ -3,6 +3,7 @@ FROM resin/armv7hf-debian-qemu
 RUN [ "cross-build-start" ]
 
 RUN apt-get update \
+ && apt-get -y dist-upgrade \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y curl wget make gcc g++ gosu 
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
